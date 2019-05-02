@@ -3,7 +3,9 @@ def encrypt(path, key):
     content = file.read()
     file.close()
 
-
+    #konwersja znaków na kody ASCII
+    content = [ord(char) for char in content]
+    print(content)
 
 
 def main():
