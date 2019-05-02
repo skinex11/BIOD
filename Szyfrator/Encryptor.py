@@ -24,6 +24,13 @@ def encrypt(path, key):
             break
 
 #Punkt 3 -------------------------------------------------------------------------------------------
+    for content in contentTable:
+        result = []
+        #dla każdego bloku obliczamy sumę znaku szyfrowanego i klucza
+        for i in range(0, len(content)):
+            result.append(key[i]+content[i])
+        resultTable.append(result)
+
 
 
     # #sumujemy wartości kluczy ASCII klucza i tekstu
