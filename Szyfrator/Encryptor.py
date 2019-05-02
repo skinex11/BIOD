@@ -1,4 +1,5 @@
 def encrypt(path, key):
+    resultTable = []
     #konwersja klucza na ASCII
     key = [ord(char) for char in key]
     # odwracam klucz
@@ -12,20 +13,22 @@ def encrypt(path, key):
 
         #jeżeli są znaki to szyfrujemy
         if content:
+            result = []
+            #konwersja znaków na kody ASCII
+            content = [ord(char) for char in content]
 
-        #jeżeli nie to zamykamy plik
+            #sumujemy wartości kluczy ASCII klucza i tekstu
+            for i in range(0, len(content)):
+               result.append(key[i]+content[i])
+
+            #dodajemy wartości ASCII jednego bloku do zbiorczej tablicy
+            resultTable.append(result)
+
+        #jeżeli nie ma znaków to zamykamy plik
         else:
             file.close()
             break
 
-
-        # file.close()
-        #
-        # #konwersja znaków na kody ASCII
-        # content = [ord(char) for char in content]
-        #
-        #
-        # for i in range()
 
 def main():
     encrypt("plik.txt", "xyz-2")
