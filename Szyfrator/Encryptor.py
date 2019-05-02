@@ -38,6 +38,18 @@ def encrypt(path, key):
         resultTable[resultTable.index(result)] = [chr(code) for code in result]
     print(resultTable)
 
+#Punkt 5 --------------------------------------------------------------------------------------------
+    #w kazdym bloku przesuwamy nie parzyste pozycje na następną nieparzystą pozycję
+    for result in resultTable:
+        #dla bloków 5-elementowych zmieniamy 3 pozycje
+        if len(result) == 5:
+            result[0], result[2], result[4] = result[4], result[0], result[2]
+        #dla bloków 3 i 4 elementowych zmieniamy dwie pozycje
+        elif 2 < len(result) < 5:
+            result[0], result[2] = result[2], result[0]
+        #dla bloków 1 i 2 elementowych nie robimy nic
+
+#Punkt 6 ----------------------------------------------------------------------------------------------
 
 
 
