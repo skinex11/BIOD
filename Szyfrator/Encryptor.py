@@ -29,17 +29,15 @@ def encrypt(path, key):
         #dla każdego bloku obliczamy sumę znaku szyfrowanego i klucza
         for i in range(0, len(content)):
             result.append(key[i]+content[i])
+        #dodajemy zaszyfrowany blok do zbiorczej tablicy
         resultTable.append(result)
 
+#Punkt 4 -------------------------------------------------------------------------------------------
+    #zamieniamy kody ASCII na znaki
+    for result in resultTable:
+        resultTable[resultTable.index(result)] = [chr(code) for code in result]
+    print(resultTable)
 
-
-    # #sumujemy wartości kluczy ASCII klucza i tekstu
-    # for i in range(0, len(content)):
-    #    result.append(key[i]+content[i])
-    #
-    # #dodajemy wartości ASCII jednego bloku do zbiorczej tablicy
-    # resultTable.append(result)
-    #
 
 
 
