@@ -1,3 +1,5 @@
+
+
 def encrypt(path, key):
     resultTable = []
     contentTable = []
@@ -35,6 +37,7 @@ def encrypt(path, key):
 #Punkt 4 -------------------------------------------------------------------------------------------
     #zamieniamy kody ASCII na znaki
     for result in resultTable:
+        #print(chr(130).encode("cp1250").decode("cp1250"))
         resultTable[resultTable.index(result)] = [chr(code) for code in result]
     print(resultTable)
 
@@ -50,7 +53,18 @@ def encrypt(path, key):
         #dla bloków 1 i 2 elementowych nie robimy nic
 
 #Punkt 6 ----------------------------------------------------------------------------------------------
+    #odwracamy tablice wynikową
+    for result in resultTable:
+        result.reverse()
+    resultTable.reverse()
 
+    #tworzymy plik wynikowy
+    resultFile = open("result.txt", "w+", encoding="Windows=1250")
+    for result in resultTable:
+        for i in range(0, len(result)):
+            char = result[i].encode().decode("Windows-1250")
+            resultFile.write(char)
+    resultFile.close()
 
 
 def main():
