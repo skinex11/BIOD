@@ -5,7 +5,11 @@ def encrypt(path, key):
 
     #konwersja znaków na kody ASCII
     content = [ord(char) for char in content]
-    print(content)
+    key = [ord(char) for char in key]
+
+    #odwracam klucz
+    key.reverse()
+
 
 
 def main():
