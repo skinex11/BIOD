@@ -13,18 +13,21 @@ def gui():
             self.master.title("Encryptor BIOD")
             #widget zajmuje całe okno
             self.pack(fill=BOTH, expand=1)
-            #tworzenie buttona
+            #tworzenie buttona. Trzeba dodać comand=encrypt()
             browseButton = Button(self, text="Przeglądaj")
             encryptButton = Button(self, text="Encrypt")
             decryptButton = Button(self, text="Decrypt")
+            #tworzenie text input
+            pathInput = Entry(self)
             #umiejscowienie buttona
-            browseButton.place(x=300, y=50)
-            encryptButton.place(x=115, y=200)
-            decryptButton.place(x=195, y=200)
+            browseButton.place(x=150, y=50)
+            encryptButton.place(x=55, y=100)
+            decryptButton.place(x=135, y=100)
+            pathInput.place(x=10, y=55)
 
     root = Tk()
     #rozmiar okna
-    root.geometry("400x300")
+    root.geometry("220x200")
 
     app = Window(root)
     root.mainloop()
