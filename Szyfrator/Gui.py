@@ -19,7 +19,9 @@ def gui():
             self.pathInput.insert(0, path)
 
         def onEncrypt(self, inputPath, inputKey):
-            path = inputPath.get()
+            self.inputPath = inputPath.get()
+            self.inputKey = inputKey.get()
+            self.quit()
 
 
         def  init_window(self):
@@ -34,12 +36,15 @@ def gui():
             self.pathInput.insert(0, "Ścieżka do pliku")
             self.pathInput.pack()
 
-            self.keyInput.configure(textvariable=self.inputKey, width=50)
+            self.keyInput.configure(textvariable=self.inputKey, width=50, show="*")
+            self.keyInput.insert(0, "Klucz szyfru")
+            self.keyInput.pack()
 
             #tworzenie buttona. Trzeba dodać comand=encrypt()
             browseButton = Button(self, text="Przeglądaj", command=self.onBrowse)
             encryptButton = Button(self, text="Encrypt", command=lambda: self.onEncrypt(self.inputPath, self.inputKey))
             decryptButton = Button(self, text="Decrypt")
+            infoButton = Button(self, text="?")
 
             #umiejscowienie
             browseButton.place(x=330, y=10)
@@ -54,3 +59,4 @@ def gui():
 
     app = Window(root)
     root.mainloop()
+    return app.pathInput, app.keyInput

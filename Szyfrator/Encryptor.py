@@ -69,9 +69,8 @@ def encrypt(path, key):
 
 
 def main():
-    gui()
-    #encrypt("plik.txt", "xyz-2")
-
+    path, key = gui()
+    encrypt(path, key)
 
 if __name__ == '__main__':
     main()
