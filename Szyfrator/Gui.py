@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
 
 
@@ -23,6 +24,14 @@ def gui():
             self.inputKey = inputKey.get()
             self.quit()
 
+        def onInfo(self):
+            messagebox.showinfo("Okienko pomocy",
+                                "Szyfrator BIOD\n"
+                                "W pierszym polu podaj ścieżkę do pliku\n"
+                                "W drugim klucz szyfrowania\n"
+                                "Wybierz czy chcesz szyfrować czy odszyfrować\n"
+                                "Plik wynikowy pojawi się w tej samej lokalizacji co wykonywany program\n"
+                                "Autor: Patryk Konopka")
 
         def  init_window(self):
             #tytuł okna
@@ -44,12 +53,13 @@ def gui():
             browseButton = Button(self, text="Przeglądaj", command=self.onBrowse)
             encryptButton = Button(self, text="Encrypt", command=lambda: self.onEncrypt(self.inputPath, self.inputKey))
             decryptButton = Button(self, text="Decrypt")
-            infoButton = Button(self, text="?")
+            infoButton = Button(self, text="HELP", command=self.onInfo)
 
             #umiejscowienie
             browseButton.place(x=330, y=10)
             encryptButton.place(x=135, y=100)
             decryptButton.place(x=215, y=100)
+            infoButton.place(x=370, y=170)
             self.pathInput.place(x=10, y=15)
             self.keyInput.place(x=10, y=50)
 
