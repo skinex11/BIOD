@@ -1,3 +1,15 @@
+from tkinter import *
+
+
+def gui():
+    class Window(Frame):
+        def __init__(self, master=None):
+            Frame.__init__(self, master)
+            self.master = master
+
+    root = Tk()
+    app = Window(root)
+    root.mainloop()
 
 
 def encrypt(path, key):
@@ -68,7 +80,8 @@ def encrypt(path, key):
 
 
 def main():
-    encrypt("plik.txt", "xyz-2")
+    gui()
+    #encrypt("plik.txt", "xyz-2")
 
 
 if __name__ == '__main__':
