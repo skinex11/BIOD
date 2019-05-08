@@ -37,10 +37,8 @@ def encrypt(path, key):
 
 #Punkt 4 -------------------------------------------------------------------------------------------
     #zamieniamy kody ASCII na znaki
-    print(resultTable)
     for result in resultTable:
         resultTable[resultTable.index(result)] = [chr(code) for code in result]
-    print(resultTable)
 
 #Punkt 5 --------------------------------------------------------------------------------------------
     #w kazdym bloku przesuwamy nie parzyste pozycje na następną nieparzystą pozycję
@@ -63,14 +61,12 @@ def encrypt(path, key):
     resultFile = open("result.txt", "w+", encoding="ISO-8859-1")
     for result in resultTable:
         for i in range(0, len(result)):
-            char = result[i]
-            print(char)
-            resultFile.write(char)
+            resultFile.write(result[i])
     resultFile.close()
 
 
 def main():
-    path, key = "plik.txt", "xyz-2"
+    path, key = gui()
     encrypt(path, key)
 
 

@@ -69,4 +69,4 @@ def gui():
 
     app = Window(root)
     root.mainloop()
-    return app.pathInput, app.keyInput
+    return app.pathInput.get(), app.keyInput.get()
