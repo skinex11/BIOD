@@ -37,8 +37,8 @@ def encrypt(path, key):
 
 #Punkt 4 -------------------------------------------------------------------------------------------
     #zamieniamy kody ASCII na znaki
+    print(resultTable)
     for result in resultTable:
-        #print(chr(130).encode("cp1250").decode("cp1250"))
         resultTable[resultTable.index(result)] = [chr(code) for code in result]
     print(resultTable)
 
@@ -60,17 +60,19 @@ def encrypt(path, key):
     resultTable.reverse()
 
     #tworzymy plik wynikowy
-    resultFile = open("result.txt", "w+", encoding="Windows=1250")
+    resultFile = open("result.txt", "wb+")
     for result in resultTable:
         for i in range(0, len(result)):
-            char = result[i].encode().decode("Windows-1250")
+            char = result[i].encode()
+            print(char)
             resultFile.write(char)
     resultFile.close()
 
 
 def main():
-    path, key = gui()
+    path, key = "plik.txt", "xyz-2"
     encrypt(path, key)
+
 
 if __name__ == '__main__':
     main()
