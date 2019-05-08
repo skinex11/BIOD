@@ -60,10 +60,10 @@ def encrypt(path, key):
     resultTable.reverse()
 
     #tworzymy plik wynikowy
-    resultFile = open("result.txt", "wb+")
+    resultFile = open("result.txt", "w+", encoding="ISO-8859-1")
     for result in resultTable:
         for i in range(0, len(result)):
-            char = result[i].encode()
+            char = result[i]
             print(char)
             resultFile.write(char)
     resultFile.close()
