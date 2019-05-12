@@ -16,7 +16,6 @@ def gui():
 
         def onBrowse(self):
             path = askopenfilename()
-            self.pathInput.delete(0, 'end')
             self.pathInput.insert(0, path)
 
         def onEncrypt(self, inputPath, inputKey):
@@ -42,12 +41,13 @@ def gui():
 
             #tworzenie text input
             self.pathInput.configure(textvariable=self.inputPath, width=50)
-            self.pathInput.insert(0, "Ścieżka do pliku")
             self.pathInput.pack()
 
             self.keyInput.configure(textvariable=self.inputKey, width=50, show="*")
-            self.keyInput.insert(0, "Klucz szyfru")
             self.keyInput.pack()
+
+            labelPath = Label(self, text="Ścieżka do pliku: ")
+            labelKey = Label(self, text="Klucz szyfrujacy: ")
 
             #tworzenie buttona. Trzeba dodać comand=encrypt()
             browseButton = Button(self, text="Przeglądaj", command=self.onBrowse)
@@ -56,16 +56,18 @@ def gui():
             infoButton = Button(self, text="HELP", command=self.onInfo)
 
             #umiejscowienie
-            browseButton.place(x=330, y=10)
-            encryptButton.place(x=135, y=100)
-            decryptButton.place(x=215, y=100)
-            infoButton.place(x=370, y=170)
-            self.pathInput.place(x=10, y=15)
-            self.keyInput.place(x=10, y=50)
+            browseButton.place(x=430, y=10)
+            encryptButton.place(x=185, y=100)
+            decryptButton.place(x=265, y=100)
+            infoButton.place(x=460, y=170)
+            labelPath.place(x=10, y=15)
+            labelKey.place(x=10, y=50)
+            self.pathInput.place(x=110, y=15)
+            self.keyInput.place(x=110, y=50)
 
     root = Tk()
     #rozmiar okna
-    root.geometry("420x200")
+    root.geometry("520x200")
 
     app = Window(root)
     root.mainloop()

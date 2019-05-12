@@ -66,7 +66,7 @@ def encrypt(path, key):
             resultFile.write(result[i])
     resultFile.close()
 
-    #usuwanie pliku
+    #usuwanie pliku oryginalnego
     os.remove(path)
 
 
