@@ -1,3 +1,5 @@
+import os
+
 from Gui import gui
 
 
@@ -63,6 +65,9 @@ def encrypt(path, key):
         for i in range(0, len(result)):
             resultFile.write(result[i])
     resultFile.close()
+
+    #usuwanie pliku
+    os.remove(path)
 
 
 def main():
