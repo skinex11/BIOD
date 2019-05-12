@@ -3,10 +3,10 @@ import os
 from Gui import gui
 
 
-def encrypt(path, key):
+def encrypt(path, key, result):
     resultTable = []
     contentTable = []
-    #konwersja klucza na ASCII
+    #konwersja klucza na kody ASCII
     key = [ord(char) for char in key]
     # odwracam klucz
     key.reverse()
@@ -60,7 +60,10 @@ def encrypt(path, key):
     resultTable.reverse()
 
     #tworzymy plik wynikowy
-    resultFile = open("result.txt", "w+", encoding="ISO-8859-1")
+    if len(result) is 0:
+        result = "result.txt"
+
+    resultFile = open(result, "w+", encoding="ISO-8859-1")
     for result in resultTable:
         for i in range(0, len(result)):
             resultFile.write(result[i])
@@ -71,8 +74,8 @@ def encrypt(path, key):
 
 
 def main():
-    path, key = gui()
-    encrypt(path, key)
+    path, key, result = gui()
+    encrypt(path, key, result)
 
 
 if __name__ == '__main__':

@@ -9,18 +9,24 @@ def gui():
             Frame.__init__(self, master)
             self.master = master
             self.inputPath = StringVar()
-            self.inputKey = StringVar()
             self.pathInput = Entry(self)
+
+            self.inputKey = StringVar()
             self.keyInput = Entry(self)
+
+            self.inputResult = StringVar()
+            self.resultInput = Entry(self)
+
             self.init_window()
 
         def onBrowse(self):
             path = askopenfilename()
             self.pathInput.insert(0, path)
 
-        def onEncrypt(self, inputPath, inputKey):
+        def onEncrypt(self, inputPath, inputKey, inputResult):
             self.inputPath = inputPath.get()
             self.inputKey = inputKey.get()
+            self.inputResult = inputResult.get()
             self.quit()
 
         def onInfo(self):
@@ -32,7 +38,7 @@ def gui():
                                 "Plik wynikowy pojawi się w tej samej lokalizacji co wykonywany program\n"
                                 "Autor: Patryk Konopka")
 
-        def  init_window(self):
+        def init_window(self):
             #tytuł okna
             self.master.title("Encryptor BIOD")
 
@@ -41,29 +47,40 @@ def gui():
 
             #tworzenie text input
             self.pathInput.configure(textvariable=self.inputPath, width=50)
+            labelPath = Label(self, text="Ścieżka do pliku: ")
             self.pathInput.pack()
 
             self.keyInput.configure(textvariable=self.inputKey, width=50, show="*")
+            labelKey = Label(self, text="Klucz szyfrujacy: ")
             self.keyInput.pack()
 
-            labelPath = Label(self, text="Ścieżka do pliku: ")
-            labelKey = Label(self, text="Klucz szyfrujacy: ")
+            self.resultInput.configure(textvariable=self.inputResult, width=25, show="")
+            labelResult = Label(self, text="Nazwa pliku wynikowego: ")
+            self.resultInput.pack()
 
-            #tworzenie buttona. Trzeba dodać comand=encrypt()
+            #tworzenie buttona
             browseButton = Button(self, text="Przeglądaj", command=self.onBrowse)
-            encryptButton = Button(self, text="Encrypt", command=lambda: self.onEncrypt(self.inputPath, self.inputKey))
+            encryptButton = Button(self, text="Encrypt", command=lambda: self.onEncrypt(self.inputPath,
+                                                                                        self.inputKey,
+                                                                                        self.inputResult))
             decryptButton = Button(self, text="Decrypt")
             infoButton = Button(self, text="HELP", command=self.onInfo)
 
             #umiejscowienie
-            browseButton.place(x=430, y=10)
-            encryptButton.place(x=185, y=100)
-            decryptButton.place(x=265, y=100)
-            infoButton.place(x=460, y=170)
             labelPath.place(x=10, y=15)
-            labelKey.place(x=10, y=50)
             self.pathInput.place(x=110, y=15)
+            browseButton.place(x=430, y=10)
+
+            labelKey.place(x=10, y=50)
             self.keyInput.place(x=110, y=50)
+
+            labelResult.place(x=10, y=85)
+            self.resultInput.place(x=160, y=85)
+
+            encryptButton.place(x=185, y=135)
+            decryptButton.place(x=265, y=135)
+
+            infoButton.place(x=460, y=170)
 
     root = Tk()
     #rozmiar okna
@@ -71,4 +88,4 @@ def gui():
 
     app = Window(root)
     root.mainloop()
-    return app.pathInput.get(), app.keyInput.get()
+    return app.pathInput.get(), app.keyInput.get(), app.resultInput.get()
