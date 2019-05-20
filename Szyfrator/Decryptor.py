@@ -38,12 +38,16 @@ def encrypt(path, key, resultFileName):
 
 #Punkt 5 --------------------------------------------------------------------------------------------
     #w kazdym bloku przesuwamy nie parzyste pozycje na poprzednią nieparzystą pozycję
-    for result in resultTable:
+    for content in contentTable:
         #dla bloków 5-elementowych zmieniamy 3 pozycje
-        if len(result) == 5:
-            result[4], result[0], result[2] = result[0], result[2], result[4]
+        if len(content) == 5:
+            content[4], content[0], content[2] = content[0], content[2], content[4]
         #dla bloków 3 i 4 elementowych zmieniamy dwie pozycje
-        elif 2 < len(result) < 5:
-            result[2], result[0] = result[0], result[2]
+        elif 2 < len(content) < 5:
+            content[2], content[0] = content[0], content[2]
         #dla bloków 1 i 2 elementowych nie robimy nic
 
+#Punkt 4 -------------------------------------------------------------------------------------------
+    #zamieniamy znaki na kody ASCII
+    for content in contentTable:
+        contentTable[contentTable.index(content)] = [ord(char) for char in content]
