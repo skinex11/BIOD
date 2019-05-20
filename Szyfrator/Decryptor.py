@@ -22,7 +22,7 @@ def encrypt(path, key, resultFileName):
     while True:
         #odczytujemy 5 znaków z pliku
         content = file.read(5)
-
+#KOCHAMY CIEBIE BARDZO :) ZOSIA I KAROLINA <3<3<3<3
         #jeżeli są znaki to dodajemy do tablicy zbiorczej
         if content:
             contentTable.append(content)
@@ -35,4 +35,15 @@ def encrypt(path, key, resultFileName):
     contentTable.reverse()
     for content in contentTable:
         content.reverse()
+
+#Punkt 5 --------------------------------------------------------------------------------------------
+    #w kazdym bloku przesuwamy nie parzyste pozycje na poprzednią nieparzystą pozycję
+    for result in resultTable:
+        #dla bloków 5-elementowych zmieniamy 3 pozycje
+        if len(result) == 5:
+            result[4], result[0], result[2] = result[0], result[2], result[4]
+        #dla bloków 3 i 4 elementowych zmieniamy dwie pozycje
+        elif 2 < len(result) < 5:
+            result[2], result[0] = result[0], result[2]
+        #dla bloków 1 i 2 elementowych nie robimy nic
 
