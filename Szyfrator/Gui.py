@@ -27,7 +27,7 @@ def gui():
             self.inputPath = inputPath.get()
             self.inputKey = inputKey.get()
             self.inputResult = inputResult.get()
-            self.quit()
+            self.keyInput.delete(0, 'end')
 
         def onInfo(self):
             messagebox.showinfo("Okienko pomocy",
