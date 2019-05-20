@@ -1,5 +1,6 @@
 import os
 
+from Decryptor import decrypt
 from Gui import gui
 
 
@@ -70,18 +71,21 @@ def encrypt(path, key, resultFileName):
 
     resultFile = open(resultFileName, "w+", encoding="ISO-8859-1")
     for result in resultTable:
+        print(result)
         for i in range(0, len(result)):
             resultFile.write(result[i])
     resultFile.close()
 
     #usuwanie pliku oryginalnego
-    os.remove(path)
+    #os.remove(path)
 
 
 if __name__ == '__main__':
-    while True:
-        path, key, result, choice = gui()
-        if choice:
-            encrypt(path, key, result)
-        else:
-            decrypt(path, key, result)
+    encrypt("D:\OneDrive\PWr\Semestr 6\BIOD\Szyfrator\etest.txt", "xyz-2", "es")
+    decrypt('D:\OneDrive\PWr\Semestr 6\BIOD\Szyfrator\es',"xyz-2","test")
+    # while True:
+    #     path, key, result, choice = gui()
+    #     if choice:
+    #         encrypt(path, key, result)
+    #     else:
+    #         decrypt(path, key, result)
