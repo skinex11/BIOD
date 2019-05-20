@@ -78,10 +78,10 @@ def encrypt(path, key, resultFileName):
     os.remove(path)
 
 
-def main():
-    path, key, result = gui()
-    encrypt(path, key, result)
-
-
 if __name__ == '__main__':
-    main()
+    while True:
+        path, key, result, choice = gui()
+        if choice:
+            encrypt(path, key, result)
+        else:
+            decrypt(path, key, result)

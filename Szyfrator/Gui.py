@@ -17,6 +17,9 @@ def gui():
             self.inputResult = StringVar()
             self.resultInput = Entry(self)
 
+            #zmienna dot. wyboru działania programu. True => szyfrator, False=> deszyfrator
+            self.choice = True
+
             self.init_window()
 
         def onBrowse(self):
@@ -27,6 +30,11 @@ def gui():
             self.inputPath = inputPath.get()
             self.inputKey = inputKey.get()
             self.inputResult = inputResult.get()
+            self.choice = True
+
+            self.pathInput.delete(0, 'key')
+            self.keyInput.delete(0, 'end')
+            self.resultInput.delete(0, 'end')
             self.quit()
 
         def onInfo(self):
@@ -88,4 +96,4 @@ def gui():
 
     app = Window(root)
     root.mainloop()
-    return app.pathInput.get(), app.keyInput.get(), app.resultInput.get()
+    return app.pathInput.get(), app.keyInput.get(), app.resultInput.get(), app.choice
