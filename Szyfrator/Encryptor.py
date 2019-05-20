@@ -3,11 +3,16 @@ import os
 from Gui import gui
 
 
-def encrypt(path, key, result):
+def encrypt(path, key, resultFileName):
     resultTable = []
     contentTable = []
     #konwersja klucza na kody ASCII
     key = [ord(char) for char in key]
+    #dopełniam klucz do 5
+    extend = 0
+    while len(key) < 5:
+        key.append(key[extend])
+        extend += 1
     # odwracam klucz
     key.reverse()
 
@@ -60,10 +65,10 @@ def encrypt(path, key, result):
     resultTable.reverse()
 
     #tworzymy plik wynikowy
-    if len(result) is 0:
-        result = "result.txt"
+    if len(resultFileName) is 0:
+        resultFileName = "result.txt"
 
-    resultFile = open(result, "w+", encoding="ISO-8859-1")
+    resultFile = open(resultFileName, "w+", encoding="ISO-8859-1")
     for result in resultTable:
         for i in range(0, len(result)):
             resultFile.write(result[i])
