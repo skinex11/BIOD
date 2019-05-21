@@ -2,6 +2,9 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
 
+from Decryptor import decrypt
+from Encryptor import encrypt
+
 
 def gui():
     class Window(Frame):
@@ -17,9 +20,6 @@ def gui():
             self.inputResult = StringVar()
             self.resultInput = Entry(self)
 
-            #zmienna dot. wyboru działania programu. True => szyfrator, False=> deszyfrator
-            self.choice = True
-
             self.init_window()
 
         def onBrowse(self):
@@ -27,15 +27,34 @@ def gui():
             self.pathInput.insert(0, path)
 
         def onEncrypt(self, inputPath, inputKey, inputResult):
-            self.inputPath = inputPath.get()
-            self.inputKey = inputKey.get()
-            self.inputResult = inputResult.get()
-            self.choice = True
+            try:
+                self.inputPath = inputPath.get()
+                self.inputKey = inputKey.get()
+                self.inputResult = inputResult.get()
+            except:
+                self.inputPath = inputPath
+                self.inputKey = inputKey
+                self.inputResult = inputResult
 
-            self.pathInput.delete(0, 'key')
+            self.pathInput.delete(0, 'end')
             self.keyInput.delete(0, 'end')
             self.resultInput.delete(0, 'end')
-            self.quit()
+            encrypt(self.inputPath, self.inputKey, self.inputResult)
+
+        def onDecrypt(self, inputPath, inputKey, inputResult):
+            try:
+                self.inputPath = inputPath.get()
+                self.inputKey = inputKey.get()
+                self.inputResult = inputResult.get()
+            except:
+                self.inputPath = inputPath
+                self.inputKey = inputKey
+                self.inputResult = inputResult
+
+            self.pathInput.delete(0, 'end')
+            self.keyInput.delete(0, 'end')
+            self.resultInput.delete(0, 'end')
+            decrypt(self.inputPath, self.inputKey, self.inputResult)
 
         def onInfo(self):
             messagebox.showinfo("Okienko pomocy",
@@ -71,7 +90,9 @@ def gui():
             encryptButton = Button(self, text="Encrypt", command=lambda: self.onEncrypt(self.inputPath,
                                                                                         self.inputKey,
                                                                                         self.inputResult))
-            decryptButton = Button(self, text="Decrypt")
+            decryptButton = Button(self, text="Decrypt", command=lambda: self.onDecrypt(self.inputPath,
+                                                                                        self.inputKey,
+                                                                                        self.inputResult))
             infoButton = Button(self, text="HELP", command=self.onInfo)
 
             #umiejscowienie
@@ -96,4 +117,3 @@ def gui():
 
     app = Window(root)
     root.mainloop()
-    return app.pathInput.get(), app.keyInput.get(), app.resultInput.get(), app.choice

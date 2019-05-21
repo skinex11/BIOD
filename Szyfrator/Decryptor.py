@@ -1,14 +1,3 @@
-import os
-
-from Gui import gui
-
-
-def reverse(string):
-    res = ""
-    for i in string:
-        res = i + string
-    return res
-
 def decrypt(path, key, resultFileName):
     resultTable = []
     contentTable = []
@@ -31,8 +20,6 @@ def decrypt(path, key, resultFileName):
     content.reverse()
     contentTable = [content[i:i+5] for i in range(0, len(content), 5)]
 
-    print(contentTable)
-
 #Punkt 5 --------------------------------------------------------------------------------------------
     #w kazdym bloku przesuwamy nie parzyste pozycje na poprzednią nieparzystą pozycję
     for content in contentTable:
@@ -43,13 +30,11 @@ def decrypt(path, key, resultFileName):
         elif 2 < len(content) < 5:
             content[2], content[0] = content[0], content[2]
         #dla bloków 1 i 2 elementowych nie robimy nic
-    print(contentTable)
 
 #Punkt 4 -------------------------------------------------------------------------------------------
     #zamieniamy znaki na kody ASCII
     for content in contentTable:
         contentTable[contentTable.index(content)] = [ord(char) for char in content]
-    print(contentTable)
 
 #Punkt 3 -------------------------------------------------------------------------------------------
     for content in contentTable:
@@ -63,4 +48,12 @@ def decrypt(path, key, resultFileName):
     for result in resultTable:
         resultTable[resultTable.index(result)] = [chr(char) for char in result]
 
-    print(resultTable)
+#Punkt 2 -----------------------------------------------------------------------------
+    if len(resultFileName) is 0:
+        resultFileName = "decryption.txt"
+
+    resultFile = open(resultFileName, "w+", encoding="ISO-8859-1")
+    for result in resultTable:
+        for i in range(0, len(result)):
+            resultFile.write(result[i])
+    resultFile.close()
