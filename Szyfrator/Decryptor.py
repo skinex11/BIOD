@@ -25,28 +25,15 @@ def decrypt(path, key, resultFileName):
 # Punkt 6 ----------------------------------------------------------------------------------------------
     #otwieramy plik
     file = open(path, "r", encoding="ISO-8859-1")
-    while True:
-        #odczytujemy 5 znaków z pliku
-        content = file.read(5)
-#KOCHAMY CIEBIE BARDZO :) ZOSIA I KAROLINA <3<3<3<3
-        #jeżeli są znaki to dodajemy do tablicy zbiorczej
-        if content:
-            contentTable.append(content)
-        # jeżeli nie ma znaków to zamykamy plik
-        else:
-            file.close()
-            break
+    content = file.read()
+    content = list(content)
+    content.reverse()
+
+    contentTable = [content[i:i+5] for i in range(0, len(content), 5)]
+
 
     print(contentTable)
 
-#     for content in contentTable:
-#         contentTable[contentTable.index(content)] = [ord(char) for char in content]
-#
-#     #odwracamy szyfrogram
-#     contentTable.reverse()
-#     for content in contentTable:
-#         content.reverse()
-#
 # #Punkt 5 --------------------------------------------------------------------------------------------
 #     #w kazdym bloku przesuwamy nie parzyste pozycje na poprzednią nieparzystą pozycję
 #     for content in contentTable:
