@@ -71,7 +71,7 @@ def encrypt(path, key, resultFileName):
 
     resultFile = open(resultFileName, "w+", encoding="ISO-8859-1")
     for result in resultTable:
-        print(result)
+        #print(result)
         for i in range(0, len(result)):
             resultFile.write(result[i])
     resultFile.close()
