@@ -41,7 +41,8 @@ def decrypt(path, key, resultFileName):
         result = []
         #dla każdego bloku obliczamy różnicę znaku szyfrowanego i klucza
         for i in range(0, len(content)):
-            result.append(content[i]-key[i])
+            diff = content[i]-key[i]
+            result.append(diff if diff > 0 else diff+256)
         #dodajemy odszyfrowany blok do zbiorczej tablicy
         resultTable.append(result)
 

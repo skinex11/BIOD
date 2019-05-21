@@ -35,7 +35,8 @@ def encrypt(path, key, resultFileName):
         result = []
         #dla każdego bloku obliczamy sumę znaku szyfrowanego i klucza
         for i in range(0, len(content)):
-            result.append(key[i]+content[i])
+            sum = key[i]+content[i]
+            result.append(sum if sum < 256 else sum-256)
         #dodajemy zaszyfrowany blok do zbiorczej tablicy
         resultTable.append(result)
 
@@ -72,4 +73,4 @@ def encrypt(path, key, resultFileName):
     resultFile.close()
 
     #usuwanie pliku oryginalnego
-    #os.remove(path)
+    os.remove(path)
